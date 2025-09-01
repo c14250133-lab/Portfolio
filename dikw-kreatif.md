@@ -37,9 +37,9 @@ Not for realistic, tapi membuat **suasana**.
 - Jika kita niat sebenarnya akan lebih menggambarkan hasil yang penuh emosi dari warna
 
 ## 🗺️ Plan
--[ ] Membuat gambar sederhana yang bisa menyampaikan pesan yang penting niat
--[ ] Ambient juga jika bisa kasih, kalau niat
--[ ] Buat cerita narasi interaktif agar lebih hidup, bisa dengan kolaborasi kalau niat
+-[] Membuat gambar sederhana yang bisa menyampaikan pesan yang penting niat
+-[] Ambient juga jika bisa kasih, kalau niat
+-[] Buat cerita narasi interaktif agar lebih hidup, bisa dengan kolaborasi kalau niat
 
 ## 📁 Metadata
 
