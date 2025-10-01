@@ -4,10 +4,10 @@
 - Tempat rawan terjadinya kejahatan
   
 ## Data ini dari google collab ini menampilkan seberapa banyak tingkat kejahatan di AS
--** Diagram presentase **
--** Rata-rata **
--** Kerentanan **
+-**Diagram presentase**
+-**Rata-rata**
+-**Kerentanan**
 
-# Link Data Profiling Google Collab
+## Link Data Profiling Google Collab
 
 - https://colab.research.google.com/drive/1frcbGjZKoQVvu1sEIezGWqraQaaBsyel?usp=sharing
