@@ -69,10 +69,6 @@ def load_csv_smart(path=None, folder='/content/us_crime', nrows=None):
     except Exception as e:
         print("Sniff gagal:", e)
 
-
-# Link Data Profiling Google Collab
-
-https://colab.research.google.com/drive/1frcbGjZKoQVvu1sEIezGWqraQaaBsyel?usp=sharing
     df = pd.read_csv(path, sep=None, engine='python', encoding='latin1',
                      low_memory=False, nrows=nrows, on_bad_lines='warn')
     print("Loaded dengan engine=python sep=None")
@@ -81,3 +77,8 @@ https://colab.research.google.com/drive/1frcbGjZKoQVvu1sEIezGWqraQaaBsyel?usp=sh
 df = load_csv_smart(folder='/content/us_crime')
 print(df.shape)
 df.head()
+
+
+# Link Data Profiling Google Collab
+
+https://colab.research.google.com/drive/1frcbGjZKoQVvu1sEIezGWqraQaaBsyel?usp=sharing
