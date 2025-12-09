@@ -1,0 +1,215 @@
+Laporan Eksplorasi Dataset University – KNIME Analytics Platform
+1. Tujuan Proyek
+
+Proyek ini bertujuan untuk melakukan data preparation, data processing, dan data visualization terhadap dataset universitas untuk mendapatkan insights terkait:
+
+Popularity (berdasarkan aplikasi diterima vs aplikasi diterima)
+
+Quotas (kategori berdasarkan banyak/sedikitnya acceptance rate)
+
+Enrollment insight (berapa banyak mahasiswa baru & persentase mahasiswa baru)
+
+Hubungan antar variabel melalui scatter plot, histogram, dan box plot
+
+Tidak dilakukan tahap klasifikasi karena tidak dibutuhkan oleh dosen.
+
+2. Alur Kerja KNIME (Workflow Overview)
+
+Berikut struktur workflow yang kamu gunakan:
+
+CSV Reader  
+ → Missing Value  
+ → Column Filter  
+ → Expression (Popularity)  
+ → Expression (Quota Category)  
+ → String Cleaner  
+ → Column Renamer  
+ → Math Formula (Acceptance Rate)  
+ → Math Formula (Enrollment Rate)  
+ → Statistics  
+ → Box Plot  
+ → Scatter Plot  
+ → Component Visualization  
+
+
+Workflow digunakan untuk:
+
+Membersihkan data
+
+Membuat kolom baru
+
+Menyederhanakan struktur kolom
+
+Menghasilkan visualisasi dan insight
+
+3. Data Preparation
+3.1 Missing Value
+
+Node Missing Value digunakan untuk:
+
+Mengisi data kosong secara otomatis
+
+Mencegah error saat melakukan operasi matematis
+
+3.2 Column Filter
+
+Dipakai untuk memilih hanya kolom yang relevan, seperti:
+
+appl_rec_d
+
+appl_accepted
+
+new_stud_enroll
+
+% new stud enroll (top 10%)
+
+Kolom lain dibuang agar analisis lebih terfokus.
+
+3.3 String Cleaner
+
+Beberapa kolom pada dataset memiliki karakter yang membuat perhitungan gagal, seperti:
+
+spasi
+
+karakter non-numerik
+
+Node ini memastikan bahwa setiap data numeric benar-benar dalam format numeric.
+
+4. Data Processing
+4.1 Membuat Kolom Popularity
+
+Menggunakan Expression Node:
+
+if ($appl_rec_d$ > 1000, "y", "n")
+
+
+Kriteria fleksibel, namun secara umum universitas dengan banyak aplikasi dianggap lebih populer.
+
+4.2 Membuat Kolom Many Quotas
+
+Tujuan: Mengelompokkan universitas berdasarkan acceptance rate.
+
+Formula di Expression Node:
+
+if ( $appl_accepted$ / $appl_rec_d$ > 0.75 , "Many quotas" , "Few quotas")
+
+4.3 Acceptance Rate
+
+Menggunakan Math Formula Node:
+
+$appl_accepted$ / $appl_rec_d$
+
+
+Hasilnya adalah nilai antara 0 dan 1.
+
+4.4 Enrollment Rate
+
+Kita manfaatkan kolom baru yang kamu buat:
+
+Kolom: new_stud_enroll
+
+Kolom: % new stud enroll
+
+Formula:
+
+$new_stud_enroll$ * ($% new stud enroll$ / 100)
+
+
+Menjadi kolom baru bernama: enrollment_rate
+
+5. Exploratory Data Analysis (EDA)
+
+Kamu menggunakan 3 visualisasi utama:
+
+5.1 Scatter Plot
+Scatter Plot 1
+
+appl_rec_d vs appl_accepted
+Hasil: grafik naik dari kiri bawah → kanan atas
+→ Menandakan semakin banyak aplikasi masuk → semakin banyak mahasiswa diterima
+→ Korelasi positif kuat
+
+Scatter Plot 2
+
+acceptance_rate vs appl_rec_d
+Hasil: grafik menurun
+→ Universitas dengan banyak peminat cenderung lebih selektif
+→ Acceptance rate semakin kecil saat aplikasi makin besar
+→ Korelasi negatif
+
+5.2 Histogram
+
+Histogram digunakan untuk melihat distribusi:
+
+Acceptance rate
+
+Enrollment rate
+
+Temuan:
+
+Acceptance rate banyak berada di sekitar 0.6–0.8
+
+Enrollment rate bervariasi dengan beberapa outlier
+
+5.3 Box Plot
+
+Digunakan untuk melihat:
+
+Persebaran data
+
+Outlier pada enrollment rate & acceptance rate
+
+Outlier penting untuk menjelaskan kondisi unik universitas tertentu.
+
+6. Statistik Deskriptif
+
+Node Statistics menghasilkan:
+
+Min, Max
+
+Mean, Median
+
+Standard deviation
+
+Percentiles
+
+Dapat digunakan untuk menyimpulkan:
+
+Acceptance rate rata-rata
+
+Enrollment rate rata-rata
+
+Apakah distribusi condong (skewed)
+
+7. Insight Utama
+1. Universitas populer → lebih selektif
+
+Scatter plot menunjukkan korelasi negatif antara jumlah aplikasi & acceptance rate.
+
+2. Many Quotas vs Few Quotas
+
+Kategori membantu memahami universitas yang:
+
+Cenderung lebih terbuka
+
+Cenderung selektif
+
+3. Enrollment Rate bervariasi luas
+
+Outlier penting untuk dianalisis lebih lanjut, mungkin universitas kecil atau khusus.
+
+4. Visualisasi siap digunakan dalam laporan
+
+Scatter plot, histogram, dan box plot menghasilkan gambaran menyeluruh.
+
+8. Kesimpulan
+
+Eksplorasi KNIME berhasil:
+
+Membersihkan dan menyiapkan data
+
+Membentuk 4 kolom baru: popularity, quota category, acceptance rate, enrollment rate
+
+Melakukan analisis visual dan statistik
+
+Menghasilkan insight yang valid tanpa perlu machine learning tambahan
